@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Мастерская «Огранка» — оформить изделие</title>
+    <link rel="stylesheet" href="{% static 'css/article.css' %}">
+    <link rel="stylesheet" href="{% static 'css/forms.css' %}">
+</head>
+<body class="article">
+<div class="header">
+    <img src="{% static 'img/logo.svg' %}" alt="Мастерская «Огранка»" />
+    <a class="all-posts" href="{% url 'archive' %}">Все изделия</a>
+</div>
+<div class="content">
+    <h1>Оформить изделие на заказ</h1>
+    <form method="POST" class="form">{% csrf_token %}
+        <input type="text" name="title" placeholder="Название изделия" value="{{ form.title }}">
+        <select name="jewelry_type">
+            <option value="">— тип изделия —</option>
+            {% for t in types %}
+            <option value="{{ t.id }}" {% if form.jewelry_type == t.id|stringformat:"d" %}selected{% endif %}>{{ t.name }}</option>
+            {% endfor %}
+        </select>
+        <textarea name="text" placeholder="Описание изделия: эскиз, размер, пожелания">{{ form.text }}</textarea>
+        <div class="row">
+            <input type="text" name="weight" placeholder="Вес, г" value="{{ form.weight }}">
+            <input type="text" name="work_price" placeholder="Стоимость работы, руб." value="{{ form.work_price }}">
+        </div>
+        <div class="label">Материалы (изделие может состоять из нескольких):</div>
+        {% for row in rows %}
+        <div class="row">
+            <select name="material_{{ forloop.counter0 }}">
+                <option value="">— материал —</option>
+                {% for m in materials %}
+                <option value="{{ m.id }}" {% if row.material == m.id|stringformat:"d" %}selected{% endif %}>{{ m }}</option>
+                {% endfor %}
+            </select>
+            <input type="text" name="amount_{{ forloop.counter0 }}" placeholder="Количество (г или шт.)" value="{{ row.amount }}">
+        </div>
+        {% endfor %}
+        <input type="submit" value="Сохранить">
+    </form>
+    {% if form.errors %}
+    <ul class="errors">
+        {% for error in form.errors %}<li>{{ error }}</li>{% endfor %}
+    </ul>
+    {% endif %}
+</div>
+</body>
+</html>

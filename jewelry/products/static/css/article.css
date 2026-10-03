@@ -1,0 +1,144 @@
+body {
+    background: #1abc9c;
+    font-family: Tahoma, Arial, sans-serif;
+    color: #ffffff;
+    margin: 0;
+    padding: 20px 0 40px;
+}
+a {
+    color: #ffffff;
+}
+
+/* --- шапка --- */
+.header img {
+    display: block;
+    width: 318px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.article .header {
+    width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+}
+.article .header img {
+    float: left;
+    margin: 0;
+}
+.all-posts {
+    float: right;
+    margin-top: 14px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* --- список изделий (архив) --- */
+.archive .archive,
+.article .content {
+    width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.one-post {
+    margin-top: 30px;
+}
+.post-title a {
+    color: #ffffff;
+}
+.post-title {
+    font-size: 30px;
+    margin: 0 0 12px;
+}
+.article-info {
+    font-size: 13px;
+    overflow: hidden;
+}
+.article-author {
+    width: 50%;
+    float: left;
+    font-weight: bold;
+}
+.article-created-date {
+    text-align: right;
+    font-style: italic;
+}
+.jewelry-info {
+    font-size: 13px;
+    margin-top: 6px;
+    opacity: 0.9;
+}
+.article-text {
+    font-size: 14px;
+    line-height: 1.45;
+}
+
+/* --- страница одного изделия --- */
+.article h1 {
+    font-size: 32px;
+    margin: 36px 0 12px;
+}
+.composition {
+    border-collapse: collapse;
+    margin: 10px 0 16px;
+    font-size: 14px;
+}
+.composition th, .composition td {
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    padding: 5px 12px;
+    text-align: left;
+}
+.price {
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+.new-post {
+    display: inline-block;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+/* --- ссылки входа/регистрации в правом верхнем углу --- */
+.user-links {
+    font-size: 18px;
+    font-weight: bold;
+}
+.archive > .user-links {
+    position: absolute;
+    top: 34px;
+    right: calc(50% - 480px);
+}
+.header-links {
+    float: right;
+    margin-top: 14px;
+    text-align: right;
+}
+.header-links .user-links,
+.header-links .all-posts {
+    float: none;
+    display: inline-block;
+    margin: 0 0 0 24px;
+}
+
+/* --- сворачивание постов --- */
+.post-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+}
+.fold-button {
+    border: none;
+    background: none;
+    color: #ffffff;
+    font: bold 14px Tahoma, Arial, sans-serif;
+    text-decoration: underline;
+    cursor: pointer;
+}
+.one-post.folded .article-author,
+.one-post.folded .article-created-date,
+.one-post.folded .jewelry-info,
+.one-post.folded .article-text {
+    /* данный стиль применится только к элементам внутри поста, у которого есть класс folded */
+    display: none;
+}

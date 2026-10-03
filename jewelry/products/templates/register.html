@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Мастерская «Огранка» — регистрация</title>
+    <link rel="stylesheet" href="{% static 'css/article.css' %}">
+    <link rel="stylesheet" href="{% static 'css/forms.css' %}">
+</head>
+<body class="article">
+<div class="header">
+    <img src="{% static 'img/logo.svg' %}" alt="Мастерская «Огранка»" />
+    <a class="all-posts" href="{% url 'archive' %}">Все изделия</a>
+</div>
+<div class="content">
+    <h1>Регистрация клиента</h1>
+    <form method="POST" class="form auth-form">{% csrf_token %}
+        <input type="text" name="username" placeholder="Логин" value="{{ form.username }}">
+        <input type="email" name="email" placeholder="Email" value="{{ form.email }}">
+        <div class="row">
+            <input type="text" name="first_name" placeholder="Имя" value="{{ form.first_name }}">
+            <input type="text" name="last_name" placeholder="Фамилия" value="{{ form.last_name }}">
+        </div>
+        <input type="text" name="phone" placeholder="Телефон" value="{{ form.phone }}">
+        <input type="password" name="password" placeholder="Пароль">
+        <input type="password" name="password2" placeholder="Повторите пароль">
+        <input type="submit" value="Зарегистрироваться">
+    </form>
+    {% if form.errors %}
+    <ul class="errors auth-errors">{% for error in form.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+    {% endif %}
+    <p class="hint">Уже есть аккаунт? <a href="{% url 'login' %}">Войти</a></p>
+</div>
+</body>
+</html>

@@ -1,0 +1,7 @@
+<div class="user-links">
+    {% if user.is_authenticated %}
+        {{ user.get_full_name|default:user.username }} · <a href="{% url 'logout' %}">Выйти</a>
+    {% else %}
+        <a href="{% url 'login' %}">Вход</a> · <a href="{% url 'register' %}">Регистрация</a>
+    {% endif %}
+</div>
